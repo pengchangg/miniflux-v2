@@ -28,6 +28,7 @@
     "alert.no_tag_entry": "इस टैग से मेल खाती कोई प्रविष्टियाँ नहीं हैं।",
     "alert.no_unread_entry": "कोई अपठित वस्तुत नहीं है।",
     "alert.no_user": "आप एकमात्र उपयोगकर्ता हैं।",
+    "alert.playback_paused": "Pause request sent to all devices",
     "alert.prefs_saved": "प्राथमिकताएं सहेजी गईं!",
     "alert.too_many_feeds_refresh": [
         "आपने बहुत अधिक फ़ीड ताज़ा करने की प्रक्रिया शुरू कर दी है। कृपया पुनः प्रयास करने से पहले %d मिनट प्रतीक्षा करें।",
@@ -47,6 +48,10 @@
     "enclosure_media_controls.speed.reset.title": "गति 1x पर रीसेट करें",
     "enclosure_media_controls.speed.slower": "धीमा",
     "enclosure_media_controls.speed.slower.title": "%sx गुना धीमा",
+    "entry.playback.kicked": "Playback continued on another device",
+    "entry.playback.other_device": "Playing on %s",
+    "entry.playback.remote_paused": "Paused remotely",
+    "entry.playback.take_over": "Continue on this device",
     "entry.starred.toast.off": "तारांकित न करे",
     "entry.starred.toast.on": "तारांकित",
     "entry.starred.toggle.off": "सितारा हटा दो",
@@ -569,6 +574,7 @@
         "%d पढ़ी गई प्रविष्टियाँ"
     ],
     "page.search.title": "खोज का परिणाम",
+    "page.sessions.pause_playback": "Pause playback on all devices",
     "page.sessions.table.actions": "कार्रवाई",
     "page.sessions.table.current_session": "वर्तमान सत्र",
     "page.sessions.table.date": "दिनांक",

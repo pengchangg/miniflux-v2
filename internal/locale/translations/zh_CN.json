@@ -28,6 +28,7 @@
     "alert.no_tag_entry": "没有匹配此标签的条目。",
     "alert.no_unread_entry": "没有未读条目。",
     "alert.no_user": "您是唯一的用户。",
+    "alert.playback_paused": "已向所有设备发送暂停请求",
     "alert.prefs_saved": "偏好设置已保存！",
     "alert.too_many_feeds_refresh": [
         "您触发了太多次订阅源刷新。请在 %d 分钟后重试。"
@@ -46,6 +47,10 @@
     "enclosure_media_controls.speed.reset.title": "重置速度到 1x",
     "enclosure_media_controls.speed.slower": "减慢",
     "enclosure_media_controls.speed.slower.title": "速度减慢到 %sx",
+    "entry.playback.kicked": "播放已在另一台设备继续",
+    "entry.playback.other_device": "正在 %s 上播放",
+    "entry.playback.remote_paused": "已被远程暂停",
+    "entry.playback.take_over": "在此设备继续播放",
     "entry.starred.toast.off": "已取消收藏",
     "entry.starred.toast.on": "已添加收藏",
     "entry.starred.toggle.off": "取消收藏",
@@ -562,6 +567,7 @@
         "%d 个已读条目"
     ],
     "page.search.title": "搜索结果",
+    "page.sessions.pause_playback": "暂停所有设备上的播放",
     "page.sessions.table.actions": "操作",
     "page.sessions.table.current_session": "当前会话",
     "page.sessions.table.date": "日期",

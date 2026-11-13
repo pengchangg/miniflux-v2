@@ -33,6 +33,21 @@ func (h *handler) saveEnclosureProgression(w http.ResponseWriter, r *http.Reques
 		response.JSONServerError(w, r, err)
 		return
 	}
+
+	session := request.WebSession(r)
+	var sessionID, device string
+	if session != nil {
+		sessionID = session.ID
+		device = playbackDeviceLabel(session.UserAgent)
+	}
+
+	pauseSeq := h.playback.PauseSeq(enclosure.UserID)
+	if !h.playback.Claim(enclosure.UserID, enclosure.ID, sessionID, device, false) {
+		// The lock is held by another device: skip the write so progress is not overwritten at random.
+		response.JSON(w, r, map[string]any{"granted": false, "pause_seq": pauseSeq})
+		return
+	}
+
 	enclosure.MediaProgression = postData.Progression
 
 	if err := h.store.UpdateEnclosure(enclosure); err != nil {
@@ -40,5 +55,5 @@ func (h *handler) saveEnclosureProgression(w http.ResponseWriter, r *http.Reques
 		return
 	}
 
-	response.JSONCreated(w, r, map[string]string{"message": "saved"})
+	response.JSONCreated(w, r, map[string]any{"message": "saved", "granted": true, "pause_seq": pauseSeq})
 }

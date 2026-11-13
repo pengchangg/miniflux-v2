@@ -28,6 +28,7 @@
     "alert.no_tag_entry": "沒有與此標籤相符的文章。",
     "alert.no_unread_entry": "目前沒有未讀文章",
     "alert.no_user": "您是唯一的使用者",
+    "alert.playback_paused": "已向所有裝置傳送暫停請求",
     "alert.prefs_saved": "設定已儲存！",
     "alert.too_many_feeds_refresh": [
         "您已觸發過太多次 Feed 更新，請等待 %d 分鐘後再嘗試。"
@@ -46,6 +47,10 @@
     "enclosure_media_controls.speed.reset.title": "重設播放速度為 1x",
     "enclosure_media_controls.speed.slower": "放慢",
     "enclosure_media_controls.speed.slower.title": "放慢 %sx",
+    "entry.playback.kicked": "播放已在另一台裝置繼續",
+    "entry.playback.other_device": "正在 %s 上播放",
+    "entry.playback.remote_paused": "已被遠端暫停",
+    "entry.playback.take_over": "在此裝置繼續播放",
     "entry.starred.toast.off": "已取消收藏",
     "entry.starred.toast.on": "已新增收藏",
     "entry.starred.toggle.off": "取消收藏",
@@ -562,6 +567,7 @@
         "%d 篇已讀文章"
     ],
     "page.search.title": "搜尋結果",
+    "page.sessions.pause_playback": "暫停所有裝置上的播放",
     "page.sessions.table.actions": "操作",
     "page.sessions.table.current_session": "目前工作階段",
     "page.sessions.table.date": "日期",

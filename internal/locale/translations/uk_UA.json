@@ -28,6 +28,7 @@
     "alert.no_tag_entry": "Немає записів, що відповідають цьому тегу.",
     "alert.no_unread_entry": "Немає непрочитаних статей.",
     "alert.no_user": "Ви єдиний користувач.",
+    "alert.playback_paused": "Pause request sent to all devices",
     "alert.prefs_saved": "Уподобання збережено!",
     "alert.too_many_feeds_refresh": [
         "Ви запустили надто багато оновлень стрічок. Будь ласка, зачекайте %d хвилину перед повторною спробою.",
@@ -48,6 +49,10 @@
     "enclosure_media_controls.speed.reset.title": "Скинути швидкість до 1x",
     "enclosure_media_controls.speed.slower": "Повільніше",
     "enclosure_media_controls.speed.slower.title": "Повільніше на %sx",
+    "entry.playback.kicked": "Playback continued on another device",
+    "entry.playback.other_device": "Playing on %s",
+    "entry.playback.remote_paused": "Paused remotely",
+    "entry.playback.take_over": "Continue on this device",
     "entry.starred.toast.off": "Без зірочки",
     "entry.starred.toast.on": "З зірочкою",
     "entry.starred.toggle.off": "Прибрати зірочку",
@@ -576,6 +581,7 @@
         "%d прочитаних записів"
     ],
     "page.search.title": "Результати пошуку",
+    "page.sessions.pause_playback": "Pause playback on all devices",
     "page.sessions.table.actions": "Дії",
     "page.sessions.table.current_session": "Поточний сеанс",
     "page.sessions.table.date": "Дата",

@@ -23,7 +23,7 @@ func Serve(store *storage.Storage, pool *worker.Pool) http.Handler {
 	templateEngine := template.NewEngine(basePath)
 	templateEngine.ParseTemplates()
 
-	handler := &handler{basePath, store, templateEngine, pool}
+	handler := &handler{basePath, store, templateEngine, pool, newPlaybackRegistry()}
 
 	mux := http.NewServeMux()
 
@@ -102,6 +102,9 @@ func Serve(store *storage.Storage, pool *worker.Pool) http.Handler {
 	mux.HandleFunc("POST /entry/status", handler.updateEntriesStatus)
 	mux.HandleFunc("POST /entry/save/{entryID}", handler.saveEntry)
 	mux.HandleFunc("POST /entry/enclosure/{enclosureID}/save-progression", handler.saveEnclosureProgression)
+	mux.HandleFunc("POST /entry/enclosure/{enclosureID}/playback/claim", handler.claimEnclosurePlayback)
+	mux.HandleFunc("POST /entry/enclosure/{enclosureID}/playback/release", handler.releaseEnclosurePlayback)
+	mux.HandleFunc("GET /entry/enclosure/{enclosureID}/playback/state", handler.enclosurePlaybackState)
 	mux.HandleFunc("POST /entry/download/{entryID}", handler.fetchContent)
 	mux.HandleFunc("POST /entry/star/{entryID}", handler.toggleStarred)
 
@@ -134,6 +137,7 @@ func Serve(store *storage.Storage, pool *worker.Pool) http.Handler {
 	// Session pages.
 	mux.HandleFunc("GET /sessions", handler.showSessionsPage)
 	mux.HandleFunc("POST /sessions/{sessionID}/remove", handler.removeSession)
+	mux.HandleFunc("POST /playback/pause-all", handler.pauseAllPlayback)
 
 	// API Keys pages.
 	if config.Opts.HasAPI() {

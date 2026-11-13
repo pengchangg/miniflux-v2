@@ -28,6 +28,7 @@
     "alert.no_tag_entry": "Não há itens que correspondam a esta etiqueta.",
     "alert.no_unread_entry": "Não há itens não lidos.",
     "alert.no_user": "Você é o único usuário.",
+    "alert.playback_paused": "Pause request sent to all devices",
     "alert.prefs_saved": "Suas preferências foram salvas!",
     "alert.too_many_feeds_refresh": [
         "Você acionou muitas atualizações de fontes. Por favor, aguarde %d minuto antes de tentar novamente.",
@@ -47,6 +48,10 @@
     "enclosure_media_controls.speed.reset.title": "Resetar velocidade para 1x",
     "enclosure_media_controls.speed.slower": "Mais Lento",
     "enclosure_media_controls.speed.slower.title": "Mais lento em %sx",
+    "entry.playback.kicked": "Playback continued on another device",
+    "entry.playback.other_device": "Playing on %s",
+    "entry.playback.remote_paused": "Paused remotely",
+    "entry.playback.take_over": "Continue on this device",
     "entry.starred.toast.off": "Desfavoritado",
     "entry.starred.toast.on": "Favoritado",
     "entry.starred.toggle.off": "Remover dos Favoritos",
@@ -569,6 +574,7 @@
         "%d itens lidos"
     ],
     "page.search.title": "Resultados da busca",
+    "page.sessions.pause_playback": "Pause playback on all devices",
     "page.sessions.table.actions": "Ações",
     "page.sessions.table.current_session": "Sessão Atual",
     "page.sessions.table.date": "Data",

@@ -28,6 +28,7 @@
     "alert.no_tag_entry": "Tätä tunnistetta vastaavia merkintöjä ei ole.",
     "alert.no_unread_entry": "Ei ole lukemattomia artikkeleita.",
     "alert.no_user": "Olet ainoa käyttäjä.",
+    "alert.playback_paused": "Pause request sent to all devices",
     "alert.prefs_saved": "Asetukset tallennettu!",
     "alert.too_many_feeds_refresh": [
         "Olet käynnistänyt liian monta syötteen päivitystä. Odota %d minuutti ennen kuin yrität uudelleen.",
@@ -47,6 +48,10 @@
     "enclosure_media_controls.speed.reset.title": "Palauta nopeus 1x",
     "enclosure_media_controls.speed.slower": "Hitaammin",
     "enclosure_media_controls.speed.slower.title": "Hitaampi %sx",
+    "entry.playback.kicked": "Playback continued on another device",
+    "entry.playback.other_device": "Playing on %s",
+    "entry.playback.remote_paused": "Paused remotely",
+    "entry.playback.take_over": "Continue on this device",
     "entry.starred.toast.off": "Tähdettömät",
     "entry.starred.toast.on": "Tähdellä merkityt",
     "entry.starred.toggle.off": "Poista suosikeista",
@@ -569,6 +574,7 @@
         "%d luettua merkintää"
     ],
     "page.search.title": "Hakutulokset",
+    "page.sessions.pause_playback": "Pause playback on all devices",
     "page.sessions.table.actions": "Toiminnot",
     "page.sessions.table.current_session": "Nykyinen istunto",
     "page.sessions.table.date": "Päivämäärä",

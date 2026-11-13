@@ -28,6 +28,7 @@
     "alert.no_tag_entry": "There are no entries matching this tag.",
     "alert.no_unread_entry": "There are no unread entries.",
     "alert.no_user": "You are the only user.",
+    "alert.playback_paused": "Pause request sent to all devices",
     "alert.prefs_saved": "Preferences saved!",
     "alert.too_many_feeds_refresh": [
         "You have triggered too many feed refreshes. Please wait %d minute before trying again.",
@@ -47,6 +48,10 @@
     "enclosure_media_controls.speed.reset.title": "Reset speed to 1x",
     "enclosure_media_controls.speed.slower": "Slower",
     "enclosure_media_controls.speed.slower.title": "Slower by %sx",
+    "entry.playback.kicked": "Playback continued on another device",
+    "entry.playback.other_device": "Playing on %s",
+    "entry.playback.remote_paused": "Paused remotely",
+    "entry.playback.take_over": "Continue on this device",
     "entry.starred.toast.off": "Unstarred",
     "entry.starred.toast.on": "Starred",
     "entry.starred.toggle.off": "Unstar",
@@ -569,6 +574,7 @@
         "%d read entries"
     ],
     "page.search.title": "Search Results",
+    "page.sessions.pause_playback": "Pause playback on all devices",
     "page.sessions.table.actions": "Actions",
     "page.sessions.table.current_session": "Current Session",
     "page.sessions.table.date": "Date",

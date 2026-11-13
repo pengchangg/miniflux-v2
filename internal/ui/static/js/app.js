@@ -1012,16 +1012,250 @@ function handlePlayerProgressionSaveAndMarkAsReadOnCompletion(playerElement) {
     ) {
         playerElement.dataset.lastPosition = currentPositionInSeconds.toString();
 
-        sendPOSTRequest(playerElement.dataset.saveUrl, { progression: currentPositionInSeconds });
+        sendPOSTRequest(playerElement.dataset.saveUrl, { progression: currentPositionInSeconds })
+            .then((response) => response.json())
+            .then((payload) => {
+                // The playback lock is held by another device: stop and let the user take over explicitly.
+                if (payload.granted === false) {
+                    playerElement.pause();
+                    setPlaybackBanner(playerElement, playerElement.dataset.labelPlaybackKicked, null, null, true);
+                    return;
+                }
 
-        // Handle the mark as read on completion
-        if (markAsReadOnCompletion >= 0 && playerElement.duration > 0) {
-            const completion =  currentPositionInSeconds / playerElement.duration;
-            if (completion >= markAsReadOnCompletion) {
-                handleEntryStatus("none", document.querySelector(":is(a, button)[data-toggle-status]"), true);
-            }
-        }
+                if (applyPlaybackPauseSeq(playerElement, payload.pause_seq)) {
+                    return;
+                }
+
+                // Handle the mark as read on completion
+                if (markAsReadOnCompletion >= 0 && playerElement.duration > 0) {
+                    const completion = currentPositionInSeconds / playerElement.duration;
+                    if (completion >= markAsReadOnCompletion) {
+                        handleEntryStatus("none", document.querySelector(":is(a, button)[data-toggle-status]"), true);
+                    }
+                }
+            })
+            .catch(() => { /* keep playing when the server cannot be reached */ });
     }
+}
+
+/**
+ * Last remote pause command seen by this page. A command is only applied once per page.
+ *
+ * @type {number|null}
+ */
+let lastPlaybackPauseSeq = null;
+
+/**
+ * Claim the playback lock of the given media element.
+ *
+ * @param {Element} mediaElement The media player element (audio or video).
+ * @param {boolean} force Take the lock over from another device.
+ * @returns {Promise<Object>}
+ */
+function claimPlayback(mediaElement, force) {
+    return sendPOSTRequest(`${mediaElement.dataset.playbackUrl}/claim`, { force: force })
+        .then((response) => response.json());
+}
+
+/**
+ * Release the playback lock of the given media element (best effort).
+ *
+ * @param {Element} mediaElement The media player element (audio or video).
+ * @returns {Promise}
+ */
+function releasePlayback(mediaElement) {
+    if (!mediaElement.dataset.playbackUrl) {
+        return Promise.resolve();
+    }
+
+    return sendPOSTRequest(`${mediaElement.dataset.playbackUrl}/release`).catch(() => {});
+}
+
+/**
+ * Release the playback lock when the page is unloaded.
+ *
+ * @param {Element} mediaElement The media player element (audio or video).
+ */
+function releasePlaybackOnPageHide(mediaElement) {
+    if (!mediaElement.dataset.playbackUrl || !navigator.sendBeacon) {
+        return;
+    }
+
+    const data = new FormData();
+    data.append("csrf", document.body.dataset.csrfToken || "");
+    navigator.sendBeacon(`${mediaElement.dataset.playbackUrl}/release`, data);
+}
+
+/**
+ * Display a message above the media player. Sticky messages survive lock state updates
+ * and are only cleared when the user starts a new playback.
+ *
+ * @param {Element} mediaElement The media player element (audio or video).
+ * @param {string} message The message to display.
+ * @param {string|null} actionLabel Label of the optional action button.
+ * @param {Function|null} action Click handler of the optional action button.
+ * @param {boolean} sticky Whether the message survives lock state updates.
+ */
+function setPlaybackBanner(mediaElement, message, actionLabel = null, action = null, sticky = false) {
+    clearPlaybackBanner(mediaElement, true);
+
+    if (!message) {
+        return;
+    }
+
+    const banner = document.createElement("div");
+    banner.className = "alert alert-info";
+    banner.appendChild(document.createTextNode(message));
+
+    if (actionLabel && action) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "button";
+        button.textContent = actionLabel;
+        button.addEventListener("click", action);
+        banner.appendChild(document.createTextNode(" "));
+        banner.appendChild(button);
+    }
+
+    mediaElement.parentNode.insertBefore(banner, mediaElement);
+    mediaElement.playbackBanner = { node: banner, sticky: sticky };
+}
+
+/**
+ * Remove the message displayed above the media player.
+ *
+ * @param {Element} mediaElement The media player element (audio or video).
+ * @param {boolean} force Remove sticky messages too.
+ */
+function clearPlaybackBanner(mediaElement, force = false) {
+    const banner = mediaElement.playbackBanner;
+    if (!banner || (banner.sticky && !force)) {
+        return;
+    }
+
+    banner.node.remove();
+    mediaElement.playbackBanner = null;
+}
+
+/**
+ * Apply a remote pause command. Returns true when the command was just applied.
+ *
+ * @param {Element} mediaElement The media player element (audio or video).
+ * @param {number} pauseSeq Pause sequence returned by the server.
+ * @returns {boolean}
+ */
+function applyPlaybackPauseSeq(mediaElement, pauseSeq) {
+    if (typeof pauseSeq !== "number") {
+        return false;
+    }
+
+    // The first response only provides the baseline, otherwise reloading the page would pause it again.
+    if (lastPlaybackPauseSeq === null) {
+        lastPlaybackPauseSeq = pauseSeq;
+        return false;
+    }
+
+    if (pauseSeq <= lastPlaybackPauseSeq) {
+        return false;
+    }
+
+    lastPlaybackPauseSeq = pauseSeq;
+    document.querySelectorAll("audio[data-playback-url],video[data-playback-url]").forEach((element) => {
+        element.pause();
+        releasePlayback(element);
+        setPlaybackBanner(element, element.dataset.labelPlaybackRemotePaused, null, null, true);
+    });
+
+    return true;
+}
+
+/**
+ * Claim the playback lock before starting a playback, and offer to take over otherwise.
+ *
+ * @param {Element} mediaElement The media player element (audio or video).
+ */
+function handlePlaybackStart(mediaElement) {
+    if (!mediaElement.dataset.playbackUrl || mediaElement.dataset.playbackHeld === "true") {
+        return;
+    }
+
+    claimPlayback(mediaElement, false)
+        .then((payload) => {
+            applyPlaybackPauseSeq(mediaElement, payload.pause_seq);
+
+            if (payload.granted) {
+                mediaElement.dataset.playbackHeld = "true";
+                clearPlaybackBanner(mediaElement, true);
+                return;
+            }
+
+            mediaElement.pause();
+            setPlaybackBanner(
+                mediaElement,
+                (mediaElement.dataset.labelPlaybackOther || "%s").replace("%s", payload.device),
+                mediaElement.dataset.labelPlaybackTakeover,
+                () => takeOverPlayback(mediaElement),
+            );
+        })
+        .catch(() => { /* allow playback when the server cannot be reached */ });
+}
+
+/**
+ * Force the playback lock and resume from the last saved position.
+ *
+ * @param {Element} mediaElement The media player element (audio or video).
+ */
+function takeOverPlayback(mediaElement) {
+    claimPlayback(mediaElement, true)
+        .then((payload) => {
+            if (!payload.granted) {
+                return;
+            }
+
+            mediaElement.dataset.playbackHeld = "true";
+            if (payload.position > 0) {
+                mediaElement.currentTime = payload.position;
+            }
+            clearPlaybackBanner(mediaElement, true);
+            mediaElement.play();
+        })
+        .catch(() => {});
+}
+
+/**
+ * Poll the playback state to detect another device playing the same episode.
+ */
+function pollPlaybackState() {
+    if (document.visibilityState !== "visible") {
+        return;
+    }
+
+    document.querySelectorAll("audio[data-playback-url],video[data-playback-url]").forEach((mediaElement) => {
+        if (!mediaElement.paused) {
+            // The playing device learns about remote pauses from its own progress save requests.
+            return;
+        }
+
+        fetch(`${mediaElement.dataset.playbackUrl}/state`)
+            .then((response) => response.json())
+            .then((payload) => {
+                if (applyPlaybackPauseSeq(mediaElement, payload.pause_seq)) {
+                    return;
+                }
+
+                if (payload.owner === "other") {
+                    setPlaybackBanner(
+                        mediaElement,
+                        (mediaElement.dataset.labelPlaybackOther || "%s").replace("%s", payload.device),
+                        mediaElement.dataset.labelPlaybackTakeover,
+                        () => takeOverPlayback(mediaElement),
+                    );
+                } else {
+                    clearPlaybackBanner(mediaElement);
+                }
+            })
+            .catch(() => {});
+    });
 }
 
 /**
@@ -1078,6 +1312,17 @@ function initializeMediaPlayerHandlers() {
         }
         element.ontimeupdate = () => handlePlayerProgressionSaveAndMarkAsReadOnCompletion(element);
     });
+
+    // Coordinate playback between devices
+    document.querySelectorAll("audio[data-playback-url],video[data-playback-url]").forEach((element) => {
+        element.addEventListener("play", () => handlePlaybackStart(element));
+        element.addEventListener("ended", () => releasePlayback(element));
+        element.addEventListener("pause", () => { element.dataset.playbackHeld = "false"; });
+        window.addEventListener("pagehide", () => releasePlaybackOnPageHide(element));
+    });
+
+    // Remote pause commands are delivered through the same interval as the lock state updates
+    window.setInterval(pollPlaybackState, 10 * 1000);
 
     // Set playback speed from the data attribute if available
     document.querySelectorAll("audio[data-playback-rate],video[data-playback-rate]").forEach((element) => {

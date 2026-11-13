@@ -28,6 +28,7 @@
     "alert.no_tag_entry": "このタグに一致するエントリーはありません。",
     "alert.no_unread_entry": "未読の記事はありません。",
     "alert.no_user": "あなたが唯一のユーザーです。",
+    "alert.playback_paused": "Pause request sent to all devices",
     "alert.prefs_saved": "設定情報は保存されました!",
     "alert.too_many_feeds_refresh": [
         "フィードの更新を要求しすぎました。%d 分後に再度お試しください。"
@@ -46,6 +47,10 @@
     "enclosure_media_controls.speed.reset.title": "速度を1xにリセット",
     "enclosure_media_controls.speed.slower": "遅く",
     "enclosure_media_controls.speed.slower.title": "%sx 遅く",
+    "entry.playback.kicked": "Playback continued on another device",
+    "entry.playback.other_device": "Playing on %s",
+    "entry.playback.remote_paused": "Paused remotely",
+    "entry.playback.take_over": "Continue on this device",
     "entry.starred.toast.off": "星を外しました",
     "entry.starred.toast.on": "星を付けました",
     "entry.starred.toggle.off": "星を外す",
@@ -562,6 +567,7 @@
         "%d 件の既読エントリ"
     ],
     "page.search.title": "検索結果",
+    "page.sessions.pause_playback": "Pause playback on all devices",
     "page.sessions.table.actions": "アクション",
     "page.sessions.table.current_session": "現在のセッション",
     "page.sessions.table.date": "日付",

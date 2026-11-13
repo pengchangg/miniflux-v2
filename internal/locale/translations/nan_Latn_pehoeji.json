@@ -28,6 +28,7 @@
     "alert.no_tag_entry": "Bô kah chit ê khan-á ū hû-ha̍p ê siau-sit",
     "alert.no_unread_entry": "Chit-má ah-bô tha̍k kè ê siau-sit",
     "alert.no_user": "Lí sī ûi-it ê sú-iōng-lâng",
+    "alert.playback_paused": "Pause request sent to all devices",
     "alert.prefs_saved": "Siat-tēng í-keng pó-chûn--ah!",
     "alert.too_many_feeds_refresh": [
         "Lí í-keng ín-khí siuⁿ chōe pái siau-sit lâi-goân ōaⁿ-sin, chhiáⁿ tán-hāu %d hun-cheng āu koh chhì-khòaⁿ-māi."
@@ -46,6 +47,10 @@
     "enclosure_media_controls.speed.reset.title": "Têng siat-tēng pàng ê sok-tō͘ chòe 1x",
     "enclosure_media_controls.speed.slower": "Pàng bān",
     "enclosure_media_controls.speed.slower.title": "Pàng bān %sx",
+    "entry.playback.kicked": "Playback continued on another device",
+    "entry.playback.other_device": "Playing on %s",
+    "entry.playback.remote_paused": "Paused remotely",
+    "entry.playback.take_over": "Continue on this device",
     "entry.starred.toast.off": "Chhú-siau siu-chông chòe soah",
     "entry.starred.toast.on": "Sin cheng-ka siu-chông chòe soah",
     "entry.starred.toggle.off": "Chhú-siau siu-chông",
@@ -562,6 +567,7 @@
         "%d ê tha̍k kè ê siau-sit"
     ],
     "page.search.title": "Chhiau-chhē kiat-kó",
+    "page.sessions.pause_playback": "Pause playback on all devices",
     "page.sessions.table.actions": "Chhau-chok",
     "page.sessions.table.current_session": "Chit-má teng-lo̍k--ê",
     "page.sessions.table.date": "Li̍t-kî",

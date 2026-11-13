@@ -28,6 +28,7 @@
     "alert.no_tag_entry": "Non ci sono voci corrispondenti a questo tag.",
     "alert.no_unread_entry": "Nessun articolo da leggere.",
     "alert.no_user": "Tu sei l'unico utente.",
+    "alert.playback_paused": "Pause request sent to all devices",
     "alert.prefs_saved": "Preferenze salvate!",
     "alert.too_many_feeds_refresh": [
         "Hai richiesto troppi aggiornamenti dei feed. Attendi %d minuto prima di riprovare.",
@@ -47,6 +48,10 @@
     "enclosure_media_controls.speed.reset.title": "Reimposta velocità a 1x",
     "enclosure_media_controls.speed.slower": "Più lento",
     "enclosure_media_controls.speed.slower.title": "Più lento di %sx",
+    "entry.playback.kicked": "Playback continued on another device",
+    "entry.playback.other_device": "Playing on %s",
+    "entry.playback.remote_paused": "Paused remotely",
+    "entry.playback.take_over": "Continue on this device",
     "entry.starred.toast.off": "Non preferito",
     "entry.starred.toast.on": "Preferito",
     "entry.starred.toggle.off": "Rimuovi dai preferiti",
@@ -569,6 +574,7 @@
         "%d voci lette"
     ],
     "page.search.title": "Risultati della ricerca",
+    "page.sessions.pause_playback": "Pause playback on all devices",
     "page.sessions.table.actions": "Azioni",
     "page.sessions.table.current_session": "Sessione corrente",
     "page.sessions.table.date": "Data",

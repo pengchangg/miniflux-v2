@@ -28,6 +28,7 @@
     "alert.no_tag_entry": "Δεν υπάρχουν αντικείμενα που να ταιριάζουν με αυτή την ετικέτα.",
     "alert.no_unread_entry": "Δεν υπάρχουν μη αναγνωσμένα άρθρα.",
     "alert.no_user": "Είστε ο μόνος χρήστης.",
+    "alert.playback_paused": "Pause request sent to all devices",
     "alert.prefs_saved": "Οι προτιμήσεις αποθηκεύτηκαν!",
     "alert.too_many_feeds_refresh": [
         "Έχετε ενεργοποιήσει πάρα πολλές ανανεώσεις ροών. Παρακαλώ περιμένετε %d λεπτό πριν προσπαθήσετε ξανά.",
@@ -47,6 +48,10 @@
     "enclosure_media_controls.speed.reset.title": "Επαναφορά ταχύτητας σε 1x",
     "enclosure_media_controls.speed.slower": "Πιο αργά",
     "enclosure_media_controls.speed.slower.title": "Πιο αργά κατά %sx",
+    "entry.playback.kicked": "Playback continued on another device",
+    "entry.playback.other_device": "Playing on %s",
+    "entry.playback.remote_paused": "Paused remotely",
+    "entry.playback.take_over": "Continue on this device",
     "entry.starred.toast.off": "Μη αγαπημένα",
     "entry.starred.toast.on": "Αγαπημένα",
     "entry.starred.toggle.off": "Αναίρεση αγαπημένου",
@@ -569,6 +574,7 @@
         "%d αναγνωσμένες καταχωρήσεις"
     ],
     "page.search.title": "Αποτελέσματα Αναζήτησης",
+    "page.sessions.pause_playback": "Pause playback on all devices",
     "page.sessions.table.actions": "Eνέργειες",
     "page.sessions.table.current_session": "Τρέχουσα Συνεδρία",
     "page.sessions.table.date": "Ημερομηνία",

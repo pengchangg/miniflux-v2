@@ -28,6 +28,7 @@
     "alert.no_tag_entry": "Nu sunt înregistrări pentru această etichetă.",
     "alert.no_unread_entry": "Nu sunt intrări necitite.",
     "alert.no_user": "Sunteți singurul utilizator.",
+    "alert.playback_paused": "Pause request sent to all devices",
     "alert.prefs_saved": "Preferințe salvate!",
     "alert.too_many_feeds_refresh": [
         "Ați activat actualizarea a prea multe fluxuri de informații. Vă rog să așteptați %d minut înainte de a reîncerca.",
@@ -48,6 +49,10 @@
     "enclosure_media_controls.speed.reset.title": "Resetare viteză la 1x",
     "enclosure_media_controls.speed.slower": "Mai încet",
     "enclosure_media_controls.speed.slower.title": "Mai încet cu %sx",
+    "entry.playback.kicked": "Playback continued on another device",
+    "entry.playback.other_device": "Playing on %s",
+    "entry.playback.remote_paused": "Paused remotely",
+    "entry.playback.take_over": "Continue on this device",
     "entry.starred.toast.off": "Fără stea",
     "entry.starred.toast.on": "Cu stea",
     "entry.starred.toggle.off": "Fără stea",
@@ -576,6 +581,7 @@
         "%d înregistrări citite"
     ],
     "page.search.title": "Rezultate Căutare",
+    "page.sessions.pause_playback": "Pause playback on all devices",
     "page.sessions.table.actions": "Acțiuni",
     "page.sessions.table.current_session": "Sesiunea Curentă",
     "page.sessions.table.date": "Dată",

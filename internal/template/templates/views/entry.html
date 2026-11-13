@@ -249,6 +249,11 @@
                             {{ if $.user.MediaPlaybackRate }}data-playback-rate="{{ $.user.MediaPlaybackRate }}"{{ end }}
                             {{ if $.user.MarkReadOnMediaPlayerCompletion }}data-mark-read-on-completion="0.9"{{ end }}
                             {{ if $.user }}data-save-url="{{ routePath "/entry/enclosure/%d/save-progression" .ID }}"{{ end }}
+                            {{ if $.user }}data-playback-url="{{ routePath "/entry/enclosure/%d/playback" .ID }}"{{ end }}
+                            data-label-playback-other="{{ t "entry.playback.other_device" }}"
+                            data-label-playback-takeover="{{ t "entry.playback.take_over" }}"
+                            data-label-playback-kicked="{{ t "entry.playback.kicked" }}"
+                            data-label-playback-remote-paused="{{ t "entry.playback.remote_paused" }}"
                             data-enclosure-id="{{ .ID }}"
                             >
                             {{ if (and $.user (mustBeProxyfied "audio")) }}
@@ -266,6 +271,11 @@
                             {{ if $.user.MediaPlaybackRate }}data-playback-rate="{{ $.user.MediaPlaybackRate }}"{{ end }}
                             {{ if $.user.MarkReadOnMediaPlayerCompletion }}data-mark-read-on-completion="0.9"{{ end }}
                             {{ if $.user }}data-save-url="{{ routePath "/entry/enclosure/%d/save-progression" .ID }}"{{ end }}
+                            {{ if $.user }}data-playback-url="{{ routePath "/entry/enclosure/%d/playback" .ID }}"{{ end }}
+                            data-label-playback-other="{{ t "entry.playback.other_device" }}"
+                            data-label-playback-takeover="{{ t "entry.playback.take_over" }}"
+                            data-label-playback-kicked="{{ t "entry.playback.kicked" }}"
+                            data-label-playback-remote-paused="{{ t "entry.playback.remote_paused" }}"
                             data-enclosure-id="{{ .ID }}"
                             >
                             {{ if (and $.user (mustBeProxyfied "video")) }}

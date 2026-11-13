@@ -28,6 +28,7 @@
     "alert.no_tag_entry": "Es gibt keine Artikel, die diesem Tag entsprechen.",
     "alert.no_unread_entry": "Es existiert kein ungelesener Artikel.",
     "alert.no_user": "Sie sind der einzige Benutzer.",
+    "alert.playback_paused": "Pause request sent to all devices",
     "alert.prefs_saved": "Einstellungen gespeichert!",
     "alert.too_many_feeds_refresh": [
         "Sie haben zu viele Aktualisierungen ausgelöst. Bitte warten Sie %d Minute, bevor Sie es erneut versuchen.",
@@ -47,6 +48,10 @@
     "enclosure_media_controls.speed.reset.title": "Wiedergabegeschwindigkeit auf 1x zurücksetzen",
     "enclosure_media_controls.speed.slower": "Langsamer",
     "enclosure_media_controls.speed.slower.title": "%sx langsamer",
+    "entry.playback.kicked": "Playback continued on another device",
+    "entry.playback.other_device": "Playing on %s",
+    "entry.playback.remote_paused": "Paused remotely",
+    "entry.playback.take_over": "Continue on this device",
     "entry.starred.toast.off": "Nicht markiert",
     "entry.starred.toast.on": "Markiert",
     "entry.starred.toggle.off": "Markierung entfernen",
@@ -569,6 +574,7 @@
         "%d gelesene Artikel"
     ],
     "page.search.title": "Suchergebnisse",
+    "page.sessions.pause_playback": "Pause playback on all devices",
     "page.sessions.table.actions": "Aktionen",
     "page.sessions.table.current_session": "Aktuelle Sitzung",
     "page.sessions.table.date": "Datum",

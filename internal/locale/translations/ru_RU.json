@@ -28,6 +28,7 @@
     "alert.no_tag_entry": "Нет записей, соответствующих этому тегу.",
     "alert.no_unread_entry": "Нет непрочитанных статей.",
     "alert.no_user": "Вы единственный пользователь.",
+    "alert.playback_paused": "Pause request sent to all devices",
     "alert.prefs_saved": "Предпочтения сохранены!",
     "alert.too_many_feeds_refresh": [
         "Вы запустили слишком много обновлений подписок. Подождите %d минуту для нового запуска",
@@ -48,6 +49,10 @@
     "enclosure_media_controls.speed.reset.title": "Сбросить скорость до 1x",
     "enclosure_media_controls.speed.slower": "Медленнее",
     "enclosure_media_controls.speed.slower.title": "Замедлить в %s раз",
+    "entry.playback.kicked": "Playback continued on another device",
+    "entry.playback.other_device": "Playing on %s",
+    "entry.playback.remote_paused": "Paused remotely",
+    "entry.playback.take_over": "Continue on this device",
     "entry.starred.toast.off": "Без пометок",
     "entry.starred.toast.on": "Помеченные",
     "entry.starred.toggle.off": "Удалить из Избранного",
@@ -576,6 +581,7 @@
         "%d прочитанных статей"
     ],
     "page.search.title": "Результаты поиска",
+    "page.sessions.pause_playback": "Pause playback on all devices",
     "page.sessions.table.actions": "Действия",
     "page.sessions.table.current_session": "Текущая сессия",
     "page.sessions.table.date": "Время",

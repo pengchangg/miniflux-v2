@@ -28,6 +28,7 @@
     "alert.no_tag_entry": "Tidak ada entri yang cocok dengan tag ini.",
     "alert.no_unread_entry": "Belum ada artikel yang dibaca.",
     "alert.no_user": "Anda adalah satu-satunya pengguna.",
+    "alert.playback_paused": "Pause request sent to all devices",
     "alert.prefs_saved": "Preferensi disimpan!",
     "alert.too_many_feeds_refresh": [
         "Anda terlalu banyak menyegarkan umpan. Mohon tunggu %d menit sebelum mencoba lagi."
@@ -46,6 +47,10 @@
     "enclosure_media_controls.speed.reset.title": "Atur ulang ke 1x",
     "enclosure_media_controls.speed.slower": "Lebih lambat",
     "enclosure_media_controls.speed.slower.title": "Lebih lambat %sx",
+    "entry.playback.kicked": "Playback continued on another device",
+    "entry.playback.other_device": "Playing on %s",
+    "entry.playback.remote_paused": "Paused remotely",
+    "entry.playback.take_over": "Continue on this device",
     "entry.starred.toast.off": "Batal Markahi",
     "entry.starred.toast.on": "Markahi",
     "entry.starred.toggle.off": "Batal Markahi",
@@ -562,6 +567,7 @@
         "%d entri dibaca"
     ],
     "page.search.title": "Hasil Pencarian",
+    "page.sessions.pause_playback": "Pause playback on all devices",
     "page.sessions.table.actions": "Tindakan",
     "page.sessions.table.current_session": "Sesi Saat Ini",
     "page.sessions.table.date": "Tanggal",

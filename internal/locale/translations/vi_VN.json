@@ -28,6 +28,7 @@
     "alert.no_tag_entry": "Không có bài viết nào khớp với thẻ này.",
     "alert.no_unread_entry": "Không có bài viết nào chưa đọc.",
     "alert.no_user": "Bạn là người dùng duy nhất.",
+    "alert.playback_paused": "Pause request sent to all devices",
     "alert.prefs_saved": "Đã lưu tùy chọn!",
     "alert.too_many_feeds_refresh": [
         "Bạn đã yêu cầu làm mới nguồn tin quá nhiều lần. Vui lòng đợi %d phút rồi thử lại."
@@ -46,6 +47,10 @@
     "enclosure_media_controls.speed.reset.title": "Đặt lại tốc độ về 1x",
     "enclosure_media_controls.speed.slower": "Chậm hơn",
     "enclosure_media_controls.speed.slower.title": "Chậm hơn %sx",
+    "entry.playback.kicked": "Playback continued on another device",
+    "entry.playback.other_device": "Playing on %s",
+    "entry.playback.remote_paused": "Paused remotely",
+    "entry.playback.take_over": "Continue on this device",
     "entry.starred.toast.off": "Đã bỏ gắn sao",
     "entry.starred.toast.on": "Đã gắn sao",
     "entry.starred.toggle.off": "Bỏ gắn sao",
@@ -562,6 +567,7 @@
         "%d bài viết đã đọc"
     ],
     "page.search.title": "Kết quả tìm kiếm",
+    "page.sessions.pause_playback": "Pause playback on all devices",
     "page.sessions.table.actions": "Thao tác",
     "page.sessions.table.current_session": "Phiên hiện tại",
     "page.sessions.table.date": "Ngày",

@@ -28,6 +28,7 @@
     "alert.no_tag_entry": "이 태그와 일치하는 게시물이 없습니다.",
     "alert.no_unread_entry": "읽지 않은 게시물이 없습니다.",
     "alert.no_user": "당신이 유일한 사용자입니다.",
+    "alert.playback_paused": "Pause request sent to all devices",
     "alert.prefs_saved": "설정이 정상적으로 저장되었습니다!",
     "alert.too_many_feeds_refresh": [
         "피드 새로고침 요청이 너무 많습니다. %d분 후 다시 시도해 주세요."
@@ -46,6 +47,10 @@
     "enclosure_media_controls.speed.reset.title": "속도를 1x로 초기화",
     "enclosure_media_controls.speed.slower": "느리게",
     "enclosure_media_controls.speed.slower.title": "%sx 느리게",
+    "entry.playback.kicked": "Playback continued on another device",
+    "entry.playback.other_device": "Playing on %s",
+    "entry.playback.remote_paused": "Paused remotely",
+    "entry.playback.take_over": "Continue on this device",
     "entry.starred.toast.off": "즐겨찾기를 해제했습니다",
     "entry.starred.toast.on": "즐겨찾기로 설정했습니다",
     "entry.starred.toggle.off": "즐겨찾기 해제",
@@ -562,6 +567,7 @@
         "읽은 게시물 %d개"
     ],
     "page.search.title": "검색 결과",
+    "page.sessions.pause_playback": "Pause playback on all devices",
     "page.sessions.table.actions": "작업",
     "page.sessions.table.current_session": "현재 세션",
     "page.sessions.table.date": "날짜",

@@ -28,6 +28,7 @@
     "alert.no_tag_entry": "لا توجد مقالات تطابق هذا الوسم.",
     "alert.no_unread_entry": "لا توجد مقالات غير مقروءة.",
     "alert.no_user": "أنت المستخدم الوحيد.",
+    "alert.playback_paused": "Pause request sent to all devices",
     "alert.prefs_saved": "تم حفظ التفضيلات!",
     "alert.too_many_feeds_refresh": [
         "لقد طلبت تحديث عدد كبير جداً من المصادر. يرجى الانتظار %d دقيقة قبل المحاولة مرة أخرى.",
@@ -51,6 +52,10 @@
     "enclosure_media_controls.speed.reset.title": "إعادة تعيين السرعة إلى 1x",
     "enclosure_media_controls.speed.slower": "أبطأ",
     "enclosure_media_controls.speed.slower.title": "أبطأ بـ %sx",
+    "entry.playback.kicked": "Playback continued on another device",
+    "entry.playback.other_device": "Playing on %s",
+    "entry.playback.remote_paused": "Paused remotely",
+    "entry.playback.take_over": "Continue on this device",
     "entry.starred.toast.off": "أزيلت من المفضلة",
     "entry.starred.toast.on": "أضيفت للمفضلة",
     "entry.starred.toggle.off": "إزالة من المفضلة",
@@ -597,6 +602,7 @@
         "%d مقالاً مقروءاً"
     ],
     "page.search.title": "نتائج البحث",
+    "page.sessions.pause_playback": "Pause playback on all devices",
     "page.sessions.table.actions": "الإجراءات",
     "page.sessions.table.current_session": "الجلسة الحالية",
     "page.sessions.table.date": "التاريخ",

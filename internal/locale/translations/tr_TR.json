@@ -28,6 +28,7 @@
     "alert.no_tag_entry": "Bu etiketle eşleşen hiçbir giriş yok.",
     "alert.no_unread_entry": "Okunmamış makele yok",
     "alert.no_user": "Tek kullanıcı sizsiniz",
+    "alert.playback_paused": "Pause request sent to all devices",
     "alert.prefs_saved": "Tercihler kaydedildi!",
     "alert.too_many_feeds_refresh": [
         "Çok fazla besleme yenilemesi başlattınız. Tekrar denemeden önce lütfen %d dakika bekleyin.",
@@ -47,6 +48,10 @@
     "enclosure_media_controls.speed.reset.title": "Hızı 1x'e sıfırla",
     "enclosure_media_controls.speed.slower": "Daha yavaş",
     "enclosure_media_controls.speed.slower.title": "%sx kat daha yavaş",
+    "entry.playback.kicked": "Playback continued on another device",
+    "entry.playback.other_device": "Playing on %s",
+    "entry.playback.remote_paused": "Paused remotely",
+    "entry.playback.take_over": "Continue on this device",
     "entry.starred.toast.off": "Yıldızsız",
     "entry.starred.toast.on": "Yıldızlı",
     "entry.starred.toggle.off": "Yıldızı kaldır",
@@ -569,6 +574,7 @@
         "%d okunmuş makale"
     ],
     "page.search.title": "Arama Sonuçları",
+    "page.sessions.pause_playback": "Pause playback on all devices",
     "page.sessions.table.actions": "Eylemler",
     "page.sessions.table.current_session": "Mevcut Oturum",
     "page.sessions.table.date": "Tarih",

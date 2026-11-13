@@ -17,6 +17,7 @@ type handler struct {
 	store    *storage.Storage
 	tpl      *template.Engine
 	pool     *worker.Pool
+	playback *playbackRegistry
 }
 
 func (h *handler) routePath(format string, args ...any) string {

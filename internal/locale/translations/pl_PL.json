@@ -28,6 +28,7 @@
     "alert.no_tag_entry": "Brak wpisów pasujących do tego znacznika.",
     "alert.no_unread_entry": "Nie ma żadnych nieprzeczytanych wpisów.",
     "alert.no_user": "Jesteś jedynym użytkownikiem.",
+    "alert.playback_paused": "Pause request sent to all devices",
     "alert.prefs_saved": "Ustawienia zapisane!",
     "alert.too_many_feeds_refresh": [
         "Wykonano zbyt wiele odświeżeń kanału. Poczekaj %d minutę przed ponowną próbą.",
@@ -48,6 +49,10 @@
     "enclosure_media_controls.speed.reset.title": "Przywróć szybkość do 1x",
     "enclosure_media_controls.speed.slower": "Wolniej",
     "enclosure_media_controls.speed.slower.title": "Wolniej o %sx",
+    "entry.playback.kicked": "Playback continued on another device",
+    "entry.playback.other_device": "Playing on %s",
+    "entry.playback.remote_paused": "Paused remotely",
+    "entry.playback.take_over": "Continue on this device",
     "entry.starred.toast.off": "Usunięto z ulubionych",
     "entry.starred.toast.on": "Dodano do ulubionych",
     "entry.starred.toggle.off": "Usuń z ulubionych",
@@ -576,6 +581,7 @@
         "%d przeczytanych wpisów"
     ],
     "page.search.title": "Wyniki wyszukiwania",
+    "page.sessions.pause_playback": "Pause playback on all devices",
     "page.sessions.table.actions": "Działania",
     "page.sessions.table.current_session": "Bieżąca sesja",
     "page.sessions.table.date": "Data",

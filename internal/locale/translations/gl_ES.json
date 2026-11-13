@@ -28,6 +28,7 @@
     "alert.no_tag_entry": "Non hai artigos con esta etiqueta.",
     "alert.no_unread_entry": "Non hai artigos sen ler.",
     "alert.no_user": "Es a única conta usuaria.",
+    "alert.playback_paused": "Pause request sent to all devices",
     "alert.prefs_saved": "Gardáronse as preferencias!",
     "alert.too_many_feeds_refresh": [
         "Intentaches demasiadas actualizacións da canle. Agarda %d minuto antes de volver intentalo.",
@@ -47,6 +48,10 @@
     "enclosure_media_controls.speed.reset.title": "Restablecer velocidade a 1x",
     "enclosure_media_controls.speed.slower": "Máis lento",
     "enclosure_media_controls.speed.slower.title": "Máis lento %sx",
+    "entry.playback.kicked": "Playback continued on another device",
+    "entry.playback.other_device": "Playing on %s",
+    "entry.playback.remote_paused": "Paused remotely",
+    "entry.playback.take_over": "Continue on this device",
     "entry.starred.toast.off": "Sen estrela",
     "entry.starred.toast.on": "Con estrela",
     "entry.starred.toggle.off": "Retirar estrela",
@@ -569,6 +574,7 @@
         "%d entradas lidas"
     ],
     "page.search.title": "Resultados da busca",
+    "page.sessions.pause_playback": "Pause playback on all devices",
     "page.sessions.table.actions": "Accións",
     "page.sessions.table.current_session": "Sesión actual",
     "page.sessions.table.date": "Data",
