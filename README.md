@@ -6,6 +6,28 @@ It's simple, fast, lightweight and super easy to install.
 
 Official website: <https://miniflux.app>
 
+Fork Additions
+--------------
+
+This is a personal fork of [miniflux/v2](https://github.com/miniflux/v2) (branch `homelab`, based on upstream `fb043227` / release 2.3.5).
+It keeps upstream behavior and adds the following podcast/video playback features.
+
+The additions below are meant for personal use and are **not** intended to be submitted upstream: they are largely AI-generated, opinionated about playback, and would be a maintenance burden for upstream maintainers. Upstream `main` is still merged into this fork regularly, so the code stays close to the latest release.
+
+### Per-Episode Playback Lock
+
+- An episode can be played on only one device at a time: the first player to start claims it, and the claim is renewed every 10 seconds with the progress save (30-second TTL).
+- Starting the same episode elsewhere does not steal the session: the new device gets a banner and must take over explicitly, and progress writes from a device without the lock are refused.
+- The player polls the session state, so pausing on the device that holds the lock pauses the same episode everywhere.
+- The sessions page has a "Pause playback on all devices" button as a last resort.
+
+### Playback Across Page Navigation
+
+- Playing audio moves into a mini player pinned to the bottom of the page with the episode title and a close button, so it survives page changes.
+- Internal GET links (menus, entry list, next/previous, keyboard shortcuts, browser back and forward) are handled with a soft navigation that swaps only the page content instead of reloading the whole document.
+- The entry page keeps a placeholder where the player was; closing the mini player puts the player back in that spot and pauses it.
+- Form submissions, external links, downloads and full page loads still reload the page and stop playback.
+
 Features
 --------
 
