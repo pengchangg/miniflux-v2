@@ -2,17 +2,6 @@
 const TOP = 9999;
 const BOTTOM = -9999;
 
-// Simple Polyfill for browsers that don't support Trusted Types
-// See https://caniuse.com/?search=trusted%20types
-if (!window.trustedTypes || !trustedTypes.createPolicy) {
-    window.trustedTypes = {
-        createPolicy: (name, policy) => ({
-            createScriptURL: src => src,
-            createHTML: html => html,
-        })
-    };
-}
-
 /**
  * Send a POST request to the specified URL with the given body.
  *
@@ -285,7 +274,7 @@ function goToPage(page, reloadOnFail = false) {
     const element = document.querySelector(`:is(a, button)[data-page=${page}]`);
 
     if (element) {
-        document.location.href = element.href;
+        navigate(element.href);
     } else if (reloadOnFail) {
         window.location.reload();
     }
@@ -356,12 +345,12 @@ function goToFeedPage() {
     if (isEntryView()) {
         const feedAnchor = document.querySelector("span.entry-website a");
         if (feedAnchor !== null) {
-            window.location.href = feedAnchor.href;
+            navigate(feedAnchor.href);
         }
     } else {
         const currentItemFeed = document.querySelector(".current-item :is(a, button)[data-feed-link]");
         if (currentItemFeed !== null) {
-            window.location.href = currentItemFeed.getAttribute("href");
+            navigate(currentItemFeed.getAttribute("href"));
         }
     }
 }
@@ -372,7 +361,7 @@ function goToFeedPage() {
  * @returns {void}
  */
 function goToAddSubscriptionPage() {
-    window.location.href = document.body.dataset.addSubscriptionUrl;
+    navigate(document.body.dataset.addSubscriptionUrl);
 }
 
 /**
@@ -540,7 +529,7 @@ function initializeMainMenuHandlers() {
         const linkElement = event.target.closest("a") || event.target.querySelector("a");
         if (linkElement && !event.ctrlKey && !event.shiftKey && !event.metaKey) {
             event.preventDefault();
-            window.location.href = linkElement.getAttribute("href");
+            navigate(linkElement.getAttribute("href"));
         }
     }, true);
 }
@@ -767,8 +756,7 @@ function handleFetchOriginalContentAction() {
 
         response.json().then((data) => {
             if (data.content && data.reading_time) {
-                const ttpolicy = trustedTypes.createPolicy('html', {createHTML: html => html});
-                document.querySelector(".entry-content").innerHTML = ttpolicy.createHTML(data.content);
+                document.querySelector(".entry-content").innerHTML = createTrustedHTML(data.content);
                 const entryReadingtimeElement = document.querySelector(".entry-reading-time");
                 if (entryReadingtimeElement) {
                     entryReadingtimeElement.textContent = data.reading_time;
@@ -849,7 +837,7 @@ function openCommentLinkAction(openLinkInCurrentTab) {
 
     if (entryLink) {
         if (openLinkInCurrentTab) {
-            window.location.href = entryLink.getAttribute("href");
+            navigate(entryLink.getAttribute("href"));
         } else {
             openNewTab(entryLink.getAttribute("href"));
         }
@@ -865,7 +853,7 @@ function openCommentLinkAction(openLinkInCurrentTab) {
 function openSelectedItemAction() {
     const currentItemLink = document.querySelector(".current-item .item-title a");
     if (currentItemLink) {
-        window.location.href = currentItemLink.getAttribute("href");
+        navigate(currentItemLink.getAttribute("href"));
     }
 }
 
@@ -876,7 +864,7 @@ function handleRemoveFeedAction() {
     const unsubscribeLink = document.querySelector("[data-action=remove-feed]");
     if (unsubscribeLink) {
         sendPOSTRequest(unsubscribeLink.dataset.url).then(() => {
-            window.location.href = unsubscribeLink.dataset.redirectUrl || window.location.href;
+            navigate(unsubscribeLink.dataset.redirectUrl || window.location.href);
         });
     }
 }
@@ -1030,12 +1018,32 @@ function handlePlayerProgressionSaveAndMarkAsReadOnCompletion(playerElement) {
                 if (markAsReadOnCompletion >= 0 && playerElement.duration > 0) {
                     const completion = currentPositionInSeconds / playerElement.duration;
                     if (completion >= markAsReadOnCompletion) {
-                        handleEntryStatus("none", document.querySelector(":is(a, button)[data-toggle-status]"), true);
+                        markPlayedEntryAsRead(playerElement);
                     }
                 }
             })
             .catch(() => { /* keep playing when the server cannot be reached */ });
     }
+}
+
+/**
+ * Mark the entry of the played media as read.
+ *
+ * The media element may belong to another entry than the one currently displayed when the
+ * mini player is used.
+ *
+ * @param {Element} playerElement The media player element (audio or video).
+ */
+function markPlayedEntryAsRead(playerElement) {
+    const entryID = parseInt(playerElement.dataset.entryId, 10);
+    const currentEntry = document.querySelector("section.entry[data-id]");
+
+    if (!entryID || (currentEntry !== null && parseInt(currentEntry.dataset.id, 10) === entryID)) {
+        handleEntryStatus("none", document.querySelector(":is(a, button)[data-toggle-status]"), true);
+        return;
+    }
+
+    updateEntriesStatus([entryID], "read");
 }
 
 /**
@@ -1301,12 +1309,16 @@ function handleMediaControlButtonClick(mediaPlayerButtonElement) {
  * Initialize media player event handlers.
  */
 function initializeMediaPlayerHandlers() {
-    document.querySelectorAll("button[data-enclosure-action]").forEach((element) => {
+    // The playing media element lives outside #page when the mini player is used: leave it alone,
+    // its handlers are already attached and re-initializing it would reset the playback.
+    const container = document.getElementById("page") || document;
+
+    container.querySelectorAll("button[data-enclosure-action]").forEach((element) => {
         element.addEventListener("click", () => handleMediaControlButtonClick(element));
     });
 
     // Set playback from the last position if available
-    document.querySelectorAll("audio[data-last-position],video[data-last-position]").forEach((element) => {
+    container.querySelectorAll("audio[data-last-position],video[data-last-position]").forEach((element) => {
         if (element.dataset.lastPosition) {
             element.currentTime = element.dataset.lastPosition;
         }
@@ -1314,18 +1326,20 @@ function initializeMediaPlayerHandlers() {
     });
 
     // Coordinate playback between devices
-    document.querySelectorAll("audio[data-playback-url],video[data-playback-url]").forEach((element) => {
-        element.addEventListener("play", () => handlePlaybackStart(element));
+    container.querySelectorAll("audio[data-playback-url],video[data-playback-url]").forEach((element) => {
+        element.addEventListener("play", () => {
+            handlePlaybackStart(element);
+
+            if (element.tagName === "AUDIO") {
+                moveMediaToMiniPlayer(element.closest(".enclosure-audio"));
+            }
+        });
         element.addEventListener("ended", () => releasePlayback(element));
         element.addEventListener("pause", () => { element.dataset.playbackHeld = "false"; });
-        window.addEventListener("pagehide", () => releasePlaybackOnPageHide(element));
     });
 
-    // Remote pause commands are delivered through the same interval as the lock state updates
-    window.setInterval(pollPlaybackState, 10 * 1000);
-
     // Set playback speed from the data attribute if available
-    document.querySelectorAll("audio[data-playback-rate],video[data-playback-rate]").forEach((element) => {
+    container.querySelectorAll("audio[data-playback-rate],video[data-playback-rate]").forEach((element) => {
         if (element.dataset.playbackRate) {
             element.playbackRate = element.dataset.playbackRate;
             if (element.dataset.enclosureId) {
@@ -1345,8 +1359,7 @@ function initializeServiceWorker() {
     if ("serviceWorker" in navigator) {
         const serviceWorkerURL = document.body.dataset.serviceWorkerUrl;
         if (serviceWorkerURL) {
-            const ttpolicy = trustedTypes.createPolicy('url', {createScriptURL: src => src});
-            navigator.serviceWorker.register(ttpolicy.createScriptURL(serviceWorkerURL), {
+            navigator.serviceWorker.register(createTrustedScriptURL(serviceWorkerURL), {
                 type: "module"
             }).catch((error) => {
                 console.error("Service Worker registration failed:", error);
@@ -1508,9 +1521,9 @@ function initializeClickHandlers() {
         handleConfirmationMessage(event.target, (url, redirectURL) => {
             sendPOSTRequest(url).then((response) => {
                 if (redirectURL) {
-                    window.location.href = redirectURL;
+                    navigate(redirectURL);
                 } else if (response?.redirected && response.url) {
-                    window.location.href = response.url;
+                    navigate(response.url);
                 } else {
                     window.location.reload();
                 }
@@ -1529,15 +1542,27 @@ function initializeClickHandlers() {
     }, true);
 }
 
+/**
+ * Initialize the handlers of the current page content.
+ *
+ * Called on page load and after each soft navigation.
+ */
+function initializePageHandlers() {
+    applyMiniPlayerPlaceholder();
+    initializeFormHandlers();
+    initializeMediaPlayerHandlers();
+    initializeTouchHandler();
+    initializeClickHandlers();
+}
+
 // Initialize application handlers
 initializeMainMenuHandlers();
-initializeFormHandlers();
-initializeMediaPlayerHandlers();
+initializePageHandlers();
 initializeWebAuthn();
 initializeKeyboardShortcuts();
-initializeTouchHandler();
-initializeClickHandlers();
 initializeServiceWorker();
+initializeMiniPlayer();
+installNavigationInterceptors();
 
 // Reload the page if it was restored from the back-forward cache and mark entries as read is enabled.
 window.addEventListener("pageshow", (event) => {

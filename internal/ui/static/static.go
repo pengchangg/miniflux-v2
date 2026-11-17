@@ -121,6 +121,7 @@ func GenerateStylesheetsBundles() error {
 func GenerateJavascriptBundles(webauthnEnabled bool) error {
 	var bundles = map[string][]string{
 		"app": {
+			"js/player.js",
 			"js/touch_handler.js",
 			"js/keyboard_handler.js",
 			"js/app.js",

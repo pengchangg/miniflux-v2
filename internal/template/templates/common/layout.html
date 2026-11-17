@@ -38,6 +38,7 @@
     data-add-subscription-url="{{ routePath "/subscribe" }}"
     data-entries-status-url="{{ routePath "/entry/status" }}"
     data-refresh-all-feeds-url="{{ routePath "/feeds/refresh" }}"
+    {{ if .user }}data-current-menu="{{ .menu }}"{{ end }}
     {{ if .webAuthnEnabled }}
     data-webauthn-register-begin-url="{{ routePath "/webauthn/register/begin" }}"
     data-webauthn-register-finish-url="{{ routePath "/webauthn/register/finish" }}"
@@ -111,6 +112,7 @@
         </nav>
     </header>
     {{ end }}
+    <div id="page">
     {{ if .flashSuccessMessage }}
         <div role="alert" class="flash-message alert alert-success">{{ .flashSuccessMessage }}</div>
     {{ end }}
@@ -123,6 +125,17 @@
     <main id="main">
         {{template "content" .}}
     </main>
+    </div>
+
+    {{ if .user }}
+    <div id="mini-player" class="mini-player" role="region" aria-label="{{ t "player.now_playing" }}" data-enclosure-id="" data-label-placeholder="{{ t "player.playing_in_player" }}" hidden>
+        <div class="mini-player-header">
+            <span class="mini-player-title"></span>
+            <button type="button" class="mini-player-close" aria-label="{{ t "player.close" }}">&#x2715;</button>
+        </div>
+        <div class="mini-player-slot"></div>
+    </div>
+    {{ end }}
     <dialog id="keyboard-shortcuts-modal" closedby="any">
         <form method="dialog">
             <button class="btn-close-modal" aria-label="Close" autofocus>x</button>

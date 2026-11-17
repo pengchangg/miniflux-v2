@@ -255,6 +255,7 @@
                             data-label-playback-kicked="{{ t "entry.playback.kicked" }}"
                             data-label-playback-remote-paused="{{ t "entry.playback.remote_paused" }}"
                             data-enclosure-id="{{ .ID }}"
+                            data-entry-id="{{ $.entry.ID }}"
                             >
                             {{ if (and $.user (mustBeProxyfied "audio")) }}
                             <source src="{{ proxyURL .URL }}" type="{{ .Html5MimeType }}">
@@ -277,6 +278,7 @@
                             data-label-playback-kicked="{{ t "entry.playback.kicked" }}"
                             data-label-playback-remote-paused="{{ t "entry.playback.remote_paused" }}"
                             data-enclosure-id="{{ .ID }}"
+                            data-entry-id="{{ $.entry.ID }}"
                             >
                             {{ if (and $.user (mustBeProxyfied "video")) }}
                             <source src="{{ proxyURL .URL }}" type="{{ .Html5MimeType }}">
